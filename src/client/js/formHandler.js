@@ -7,9 +7,7 @@ function handleSubmit(event) {
 
     console.log("::: Form Submitted :::")
     posting('http://localhost:8081/api', {url: formText})
-        .then(res => {
-            return res.json()
-        })
+        
         .then(function (datas) {
             document.getElementById('polarity').innerHTML = 'POLARITY: ' + polarityCheck(datas.score_tag);
             document.getElementById("agreement").innerHTML = `AGREEMENT: ${datas.agreement}`;
