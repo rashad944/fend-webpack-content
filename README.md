@@ -1,38 +1,42 @@
-# Webpack Express Example App
+# Evaluate A News Article with (NLP) Natural Language Processing
 
-The goal of this repo is be an example of a basic but functional app built on Express and Webpack.
+This is the 4th project at [Udacity Front End Developer Nano Degree]
 
-If you are just starting this process, start from branch 0-initial-setup. Otherwise, switch to the appropriate numbered branches of this repo as needed. The branches are:
-- [0-initial-setup](https://github.com/udacity/fend-webpack-content/tree/0-initial-setup)
-- [1-install-webpack](https://github.com/udacity/fend-webpack-content/tree/1-install-webpack)
-- [2-add-webpack-entry](https://github.com/udacity/fend-webpack-content/tree/2-add-webpack-entry)
-- [3-webpack-output-and-loaders](https://github.com/udacity/fend-webpack-content/tree/3-webpack-output-and-loaders)
-- [4-webpack-plugins](https://github.com/udacity/fend-webpack-content/tree/4-webpack-plugins)
-- [5-webpack-mode](https://github.com/udacity/fend-webpack-content/tree/5-webpack-mode)
-- [6-webpack-for-convenience](https://github.com/udacity/fend-webpack-content/tree/6-webpack-for-convenience)
+In this project we build a web tool that allows users to use Natural Language Processing (NLP) in evaluating articles or blogs found on other websites by submitting its URL and full sentiment analysis returned from [meaningcloud API](https://www.meaningcloud.com/products/sentiment-analysis)
 
-Each branch in this project is a step along the path to creating a fully functional webpack setup. In each branch, there will be a documentation file that lists out the steps taken in that branch (each step is also roughly a git commit if you look at the history) which you can use as a checklist when setting up your own projects. 
+## Tools
+* HTML
+* CSS
+* JavaScript
+* NodeJS
+* Webpack
+* meaningcloud API
+* Jest (for testing)
 
-## What we will cover
+# Instructions
 
-We will cover:
+npm i -D @babel/core @babel/preset-env babel-loader
+npm i -D style-loader node-sass css-loader sass-loader
+npm i -D clean-webpack-plugin
+npm i -D html-webpack-plugin
+npm i -D mini-css-extract-plugin
+npm i -D optimize-css-assets-webpack-plugin terser-webpack-plugin
 
-- Webpack entry point
-- Webpack output and dist folder
-- Webpack Loaders
-- Webpack Plugins
-- Webpack Mode
-- Tools for convenient Webpack development
+5. Sign up for an API key at [meaningcloud.com](https://www.meaningcloud.com/developer/create-account)
 
-## Get Up and Running
+6. Configure environment variables using dotenv package
+	1. Install the dotenv package
+	
+	npm install dotenv
 
-Fork this repo, then clone the branch of your choice from your forked repo down to your computer:
+	2. Create a new `.env` file in the root of your project
+	3. Fill the `.env` file with your API key like this:
+	
+	API_KEY=**************************
+	
+7. Start the project
 
-```
-git clone -- git@github.com:[your-user-name]/webpack-express.git --
-```
+`npm run build-prod` | Build project
+`npm start` | Run project
 
-`cd` into your new folder and run:
-- ```npm install```
-- ```npm start``` to start the app
-- this app runs on localhost:8080, but you can of course edit that in server.js
+8. Open browser at http://localhost:8081/

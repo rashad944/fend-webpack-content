@@ -3,22 +3,25 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('url').value
-    Client.urlCheck(formText)
+    if (Client.urlCheck(formText)) {
 
-    console.log("::: Form Submitted :::")
-    posting('http://localhost:8081/api', {url: formText})
-        
-        .then(function (datas) {
-            document.getElementById('polarity').innerHTML = 'POLARITY: ' + polarityCheck(datas.score_tag);
-            document.getElementById("agreement").innerHTML = `AGREEMENT: ${datas.agreement}`;
-            document.getElementById("subjectivity").innerHTML = `SUBJECTIVITY: ${datas.subjectivity}`;
-            document.getElementById("confidence").innerHTML = `CONFIDENCE: ${datas.confidence}`;
-            document.getElementById("irony").innerHTML = `Irony: ${datas.irony}`;
-        })
+        console.log("::: Form Submitted :::")
+        posting('http://localhost:8081/api', { url: formText })
+
+            .then(function (datas) {
+                document.getElementById('polarity').innerHTML = 'POLARITY: ' + polarityCheck(datas.score_tag);
+                document.getElementById("agreement").innerHTML = `AGREEMENT: ${datas.agreement}`;
+                document.getElementById("subjectivity").innerHTML = `SUBJECTIVITY: ${datas.subjectivity}`;
+                document.getElementById("confidence").innerHTML = `CONFIDENCE: ${datas.confidence}`;
+                document.getElementById("irony").innerHTML = `IRONY: ${datas.irony}`;
+            })
+    } else {
+        alert('Invalid URL!');
+    }
 }
 // Async Post 
 const posting = async (url = "", data = {}) => {
-    console.log('Sentiment Analyzing:', data);
+    console.log('Sentiment Analysis in progress:', data);
     const response = await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
@@ -39,29 +42,30 @@ const posting = async (url = "", data = {}) => {
 
 // polarityCheck for Output
 const polarityCheck = (score) => {
-    let display;
+
+    let show = "";
     switch (score) {
         case 'NONE':
-            display = 'no sentiment';
+            show = 'no sentiment';
         case 'P+':
-            display = 'high positive';
+            show = 'high positive';
             break;
         case 'P':
-            display = 'positive';
+            show = 'positive';
             break;
         case 'NEW':
-            display = 'neutral';
+            show = 'neutral';
             break;
         case 'N':
-            display = 'negative';
+            show = 'negative';
             break;
         case 'N+':
-            display = 'high negative';
+            show = 'high negative';
             break;
         
     }
-    return display();
+    return show;
 }
 
-export { handleSubmit}
-export { polarityCheck}
+export {handleSubmit}
+export {polarityCheck}
